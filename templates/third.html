@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html ng-app="recipeApp">
+<head>
+<title>My Food</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+  <style>
+    .social-icon {
+      width: 50px; /* Adjust size as needed */
+      height: 50px; /* Adjust size as needed */
+      margin: 10px; /* Adjust spacing between icons */
+    }
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Karma", sans-serif
+    }
+
+    .w3-bar-block .w3-bar-item {
+      padding: 20px
+    }
+  </style>
+</head>
+
+<body ng-controller="recipeController">
+
+  <!-- Sidebar (hidden by default) -->
+  <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left"
+    style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu </a>
+    <a href="index" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>  
+    <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button">Food</a>
+      <a href="fooditem" onclick="w3_close()" class="w3-bar-item w3-button">Add Food </a>
+      <a href="login" onclick="w3_close()" class="w3-bar-item w3-button">Log Out</a>
+  </nav>
+
+  <!-- Top menu -->
+  <div class="w3-top">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+      <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+      <div class="w3-right w3-padding-16">Mail</div>
+      <div class="w3-center w3-padding-16">My Food</div>
+    </div>
+  </div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main w3-content w3-padding" style="max-height: 30vh; max-width:1200px;margin-top:100px">
+
+   <!-- First Photo Grid-->
+   <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+    {% for di in dishes[12:15] %}
+  <div class="w3-third">
+    <img src="{{ di.image_url }}" alt="{{ di.name }}"
+      style="border-radius:10%;height:40vh; width:90%">
+    <h3>{{ di.name }}</h3>
+    <p>{{ di.description }}</p>
+    <!-- <p>{{ di.image_url }}</p> -->
+    <p>{{di.servings}}</p>
+    <p>{{di.difficulty_level}}</p>
+    <button class="recipe-button" data-index="{{ loop.index+12}}">View Recipe</button>
+    
+
+  </div>
+  {% endfor %}
+</div>
+
+  <!-- Second Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+    {% for di in dishes[15:18] %}
+  <div class="w3-third">
+    <img src="{{ di.image_url }}" alt="{{ di.name }}"
+      style="border-radius:10%;height:40vh; width:90%">
+    <h3>{{ di.name }}</h3>
+    <p>{{ di.description }}</p>
+    <!-- <p>{{ di.image_url }}</p> -->
+    <p>{{di.servings}}</p>
+    <p>{{di.difficulty_level}}</p>
+    
+    <button class="recipe-button" data-index="{{ loop.index+15}}">View Recipe</button>
+
+
+  </div>
+  {% endfor %}
+</div>
+  
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a href="index" class="w3-bar-item w3-button w3-hover-black">«</a>
+      {% for pag in page %}
+      <a href="{{pag.name}}" class="w3-bar-item w3-button w3-hover-black">{{ pag.no }}</a>
+      {% endfor %}
+      <a href="third" class="w3-bar-item w3-button w3-hover-black">»</a>
+    </div>
+  </div>
+
+    
+
+    <!-- Footer -->
+    <footer class="w3-row-padding w3-padding-32">
+      <div class="w3-half">
+        <h3>Details</h3>
+        <p>Best food recipe website</p>
+        </div>
+
+        <div class="w3-half">
+          <h3>BLOG POSTS</h3>
+          
+                <ul class="w3-ul w3-hoverable">
+                  <li class="w3-padding-16">
+                    <img src="https://imgs.search.brave.com/TzkBnsvl6QbE5pg3GNkc7HMRxUPEKlTZpURsrIjU0Ig/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDkyMjQ0/MTMuanBn" class="w3-left w3-margin-right"
+                      style="width:50px; height: 7vh;">
+                    <span class="w3-large">My instagram </span><br>
+                    <a href="https://www.patreon.com/" target="_blank">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-icon">
+      
+                    </a>
+                  </li>
+                  <li class="w3-padding-16">
+                    <img src="https://imgs.search.brave.com/NAjuJIJ-I-alCjuBmVXBdTW-jqFEo_rFZomUzUgxTb4/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDM3MjEy/MzQuanBn" class="w3-left w3-margin-right" style="width:50px">
+                    <span class="w3-large">Patreon</span><br>
+                    <a href="https://www.instagram.com/" target="_blank">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Patreon_logomark.svg/1280px-Patreon_logomark.svg.png" alt="Patreon" class="social-icon">
+                      
+                    </a>
+                  </li>
+                </ul>
+        </div>
+  
+     </footer>
+
+    <!-- End page content -->
+  </div>
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+  </script>
+  <script>
+    $(document).ready(function() {
+      // AJAX function to handle clicking on the "View Recipe" button
+      $(".recipe-button").click(function(e) {
+        e.preventDefault(); // Prevent the default behavior of the button
+        var index = $(this).data('index'); // Get the index from the button's data attribute
+  
+        $.ajax({
+          url: '/next-page', // URL of the next page
+          type: 'GET',
+          data: {'index': index}, // Pass the index as a parameter
+          success: function(response) {
+            // Handle the success response from the server, if needed
+            console.log("Index sent successfully!");
+            // Redirect to the next page if needed
+            window.location.href = '/next-page?index=' + index;
+          },
+          error: function(xhr, errmsg, err) {
+            // Handle errors, if any
+            console.log("Error occurred!");
+          }
+        });
+      });
+    });
+  </script>
+<script>
+  var app = angular.module('recipeApp', []);
+  app.controller('recipeController', function ($scope) {
+    $scope.page_number = [
+      {
+        no:1,name:"index"
+      },
+      {
+        no:2,name:"second"
+      }
+    ];
+    $scope.dishes = [
+      {
+        name: 'The Perfect Sandwich, A Real NYC Classic',
+        description: 'Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.',
+        image: '../static/images/Butter Chicken.webp'
+      },
+      {
+        name: 'Let Me Tell You About This Steak',
+        description: 'Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.',
+        image: '../static/images/Chicken Quesadillas.webp'
+      },
+      {
+        name: 'Cherries, interrupted',
+        description: 'Lorem ipsum text praesent tincidunt ipsum lipsum.\nWhat else?',
+        image: '../static/images/Chocolate Brownies.webp'
+      },
+      {
+        name: 'Once Again, Robust Wine and Vegetable Pasta',
+        description: 'Lorem ipsum text praesent tincidunt ipsum lipsum.',
+        image: '../static/images/Homemade Mac and Cheese.webp'
+      },
+      {
+        name:"The Perfect Sandwich, A Real NYC Classic",
+        description:"Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.",
+        image:"../static/images/Vanilla Cupcakes.webp"
+      },
+      {
+        name:"Let Me Tell You About This Steak",
+        description:"Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.",
+        image:"../static/images/Vegetable Biryani.webp"
+      },
+      {
+        name:"Cherries, interrupted",
+        description:"Lorem ipsum text praesent tincidunt ipsum lipsum.\nWhat else?",
+        image:"../static/images/Chocolate Brownies.webp"
+      },
+      {
+        name:"Once Again, Robust Wine and Vegetable Pasta",
+        description:"Lorem ipsum text praesent tincidunt ipsum lipsum.",
+        image:"../static/images/Homemade Mac and Cheese.webp"
+      }
+    ];
+  });
+  </script>
+  <script src="../static/js/script.js"></script>
+
+</body>
+
+</html>

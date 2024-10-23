@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html ng-app="recipeApp">
+<head>
+<title>My Food</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+  <style>
+    .social-icon {
+      width: 50px; /* Adjust size as needed */
+      height: 50px; /* Adjust size as needed */
+      margin: 10px; /* Adjust spacing between icons */
+    }
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Karma", sans-serif
+    }
+
+    .w3-bar-block .w3-bar-item {
+      padding: 20px
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+  </style>
+</head>
+
+<body ng-controller="recipeController">
+
+  <!-- Sidebar (hidden by default) -->
+  <!-- <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left"
+    style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+    <a href="#food" onclick="w3_close()" class="w3-bar-item w3-button">Food</a>
+    <a href="fooditem" onclick="w3_close()" class="w3-bar-item w3-button">Add Food</a>
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
+    <a href="login" onclick="w3_close()" class="w3-bar-item w3-button">Log Out</a>
+  </nav> -->
+
+  <!-- Top menu -->
+  <div class="w3-top">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+      <!-- <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div> -->
+      <!-- <div class="w3-right w3-padding-16">Mail</div> -->
+      <div class="w3-center w3-padding-16">My Food</div>
+    </div>
+  </div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main w3-content w3-padding" style="max-height: 30vh; max-width:1200px;margin-top:100px">
+
+    <!-- Form Container -->
+    <div class="content">
+        <div class="form-container">
+        <div class="w3-container w3-half">
+            <form id="registerForm">
+                <h2 class="text-center">Add  food details</h2>
+                <div class="form-group">
+                    <label for="name">name:</label>
+                    <input type="name" class="form-control" id="name" name="name" placeholder="Enter name"required>
+                </div>
+                <div class="form-group">
+                    <label for="desc">desc:</label>
+                    <input type="text" class="form-control" id="desc" name="desc" placeholder="Enter desc"required>
+                </div>
+                <div class="form-group">
+                    <label for="prep">prep:</label>
+                    <input type="prep" class="form-control" id="prep" name="prep" placeholder="prep time" required>
+                </div>
+                <div class="form-group">
+                    <label for="cook">Cook time:</label>
+                    <input type="text" class="form-control" id="cook" name="cook" placeholder="Cooking time"required>
+                </div>
+                <div class="form-group">
+                    <label for="servings">servings:</label>
+                    <input type="number" class="form-control" id="servings" name="servings" placeholder="People can serve"required>
+                </div>
+                <div class="form-group">
+                  <label for="difficulty_level">Difficulty Level:</label>
+                  <select class="form-control" id="difficulty_level" name="difficulty_level" required>
+                      <option value="">Select difficulty level</option>
+                      <option value="Easy">Easy</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Hard">Hard</option>
+                  </select>
+              </div>
+                <div class="form-group">
+                    <label for="image_url">image_url:</label>
+                    <input type="tel" class="form-control" id="image_url" name="image_url" placeholder="Enter image_url"required>
+                <center>
+                    <button class="w3-btn w3-blue" type="submit" style="margin-inline: 10%;" id="register">Add Item</button>
+                   
+                  </center>
+            </form>
+        </div>
+    </div>
+    </div>
+  </div>
+<script>
+
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+</script>
+</body>
+<!-- <script src="../static/js/register.js"></script> -->
+<script>// $(document).ready(function() {
+    $("#registerForm").submit(function (event) {
+        // Prevent the form from submitting traditionally
+        event.preventDefault();
+        debugger;
+        var em = document.getElementById('name').value;
+        var nm = document.getElementById('desc').value;
+        var pswd = document.getElementById('prep').value;
+        var cpswd = document.getElementById('cook').value;
+        var adr = document.getElementById('servings').value;
+        var ph = document.getElementById('difficulty_level').value;
+        var img = document.getElementById('image_url').value;
+
+
+        var nmpattern = /^[A-Za-z ]+$/;
+        var empattern = /^[A-Za-z0-9!&#*]*.@[a-zA-Z]*.[com]*$/;
+        var phpattern = /^(6|7|8|9){1}[0-9]{9}$/;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        // if (!nmpattern.test(nm)) {
+        //     alert("Invalid name");
+        //     return false;
+        // }
+        // if (!passwordRegex.test(pswd)) {
+        //     alert("Invalid Password");
+        //     return false;
+        // }
+        // if (pswd != cpswd) {
+        //     alert("Password and confirm password should be the same");
+        //     // Remove the line below to prevent form reset
+        //     // FormData.reset();
+        //     return false;
+        // }
+        // if (!phpattern.test(ph)) {
+        //     alert("Invalid Phone Number");
+        //     return false;
+        // }
+        // if (!empattern.test(em)) {
+        //     alert("Invalid email");
+        //     return false;
+        // }
+
+        $.ajax({
+            type: "GET",
+            url: "/regfood",
+            contentType: "application/json;charset=UTF-8",
+            DataType: "json",
+            data: {
+                name: nm,
+                desc: em,
+                prep: pswd,
+                cook: cpswd,
+                servings: adr,
+                difficulty_level: ph,
+                image_url: img
+
+            },
+            success: function (response) {
+                alert("Registered Successfully");
+                // Handle the success response if needed
+                console.log(response);
+                window.location.href = '/index';
+            },
+            error: function (error) {
+                alert("Registration Failed");
+                // Handle the error response if needed
+                console.error(error);
+            }
+        });
+    });
+// });
+</script>
+</html>

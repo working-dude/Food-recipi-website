@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+    <style>
+        .navbar {
+            min-height: 6rem;
+        }
+
+        .navbar-brand img {
+            max-height: 200%;
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="https://plus.unsplash.com/premium_photo-1683141316518-70595b251f01?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
+                        alt="Logo">
+                </a>
+            </div>
+            <div class="navbar-left ">
+                <center>
+                    <h3>Student data prediction
+                    </h3>
+                </center>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="index">Home</a></li>
+                    <li><a href="register" >Register</a></li>
+                    <li><a href="login" style="color: rgb(10, 111, 111);">Login</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="content">
+        <div class="center-form">
+            <form >
+                <h2 class="text-center">Login Form</h2>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                    placeholder="Enter Password" required>
+                </div>
+               
+               <center> <button type="submit" class="btn btn-primary "id='btn_accessaccount'>Login</button>
+                <a href="register" class="btn btn-success">Create Account</a></center>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+<script src="../static/js/login.js"></script>
+
+</html>
